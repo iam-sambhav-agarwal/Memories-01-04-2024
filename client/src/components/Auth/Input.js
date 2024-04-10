@@ -6,7 +6,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 const Input = ({ name, half, label, handleChange, autoFocus, type, handleShowPassword }) => {
     return (
         <Grid item xs={12} sm={half ? 6 : 12}>
-            <TextField name={name} onChange={handleChange} variant="outlined" required fullWidth label={label} autoFocus={autoFocus} type={type} InputPros={name === 'password' && {
+            <TextField name={name} onChange={handleChange} variant="outlined" required fullWidth label={label} autoFocus={autoFocus} type={type} InputPros={name === 'password' ? {
                 endAdornment: (
                     <InputAdornment position="end" >
                         <IconButton onClick={handleShowPassword}>
@@ -14,7 +14,7 @@ const Input = ({ name, half, label, handleChange, autoFocus, type, handleShowPas
                         </IconButton>
                     </InputAdornment>
                 ),
-            }
+            }:null
             }
 
             />

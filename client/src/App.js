@@ -9,15 +9,18 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 const App = () => {
     return (
+
+        
         <Router>
             <Container maxwidth='lg'>
                 <NavBar />
                 <Routes>
-                   <Route path='/' exact component={Home} />
-                   <Route path='/auth' exact component={Auth} />
+                   <Route path="/" exact element={<Home/>} />
+                   <Route path="/Auth" exact element={<Auth/> } />
                 </Routes>
             </Container>
         </ Router>
+       
 
     )
 }
