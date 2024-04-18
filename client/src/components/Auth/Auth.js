@@ -38,7 +38,7 @@ const Auth = () => {
   }
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup)
-    handleShowPassword(false)
+    setShowPassword(false)
   }
   const createOrgetUser = async (response) => {
     const result = jwtDecode(response.credential)
