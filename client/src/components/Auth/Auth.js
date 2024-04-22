@@ -10,26 +10,26 @@ import { useNavigate } from 'react-router-dom'
 import { signin, signup } from '../../actions/auth'
 
 
-const intialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
 
 const Auth = () => {
   const classes = useStyles()
   const [showPassword, setShowPassword] = useState(false)
+  const [formData, setFormData] = useState(initialState)
   const [isSignup, setIsSignup] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [formData, setFormData] = useState(intialState)
 
 
 
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)
   const handleSubmit = (e) => {
     e.preventDefault()
+
     if (isSignup) {
       dispatch(signup(formData, navigate))
     } else {
       dispatch(signin(formData, navigate))
-
     }
   }
   const handleChange = (e) => {
@@ -37,15 +37,15 @@ const Auth = () => {
 
   }
   const switchMode = () => {
+   
     setIsSignup((prevIsSignup) => !prevIsSignup)
     setShowPassword(false)
   }
   const createOrgetUser = async (response) => {
+    const token = response?.credential
     const result = jwtDecode(response.credential)
-
-
     try {
-      dispatch({ type: 'AUTH', data: { result } })
+      dispatch({ type: 'AUTH', data: { result, token } })
       navigate('/')
     } catch (error) {
       console.log(error)
