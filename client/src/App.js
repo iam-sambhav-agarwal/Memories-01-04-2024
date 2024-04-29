@@ -26,8 +26,6 @@ const AuthRoute = () => {
 
 
 const App = () => {
-    const  user = JSON.parse(localStorage.getItem('profile'))
-    console.log(user)
     return (
         <GoogleOAuthProvider clientId="888558021729-nscp23u9fd9ab2krnjvm4oa6d8dgsg4p.apps.googleusercontent.com">
             <Router>
