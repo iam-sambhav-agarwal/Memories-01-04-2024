@@ -1,6 +1,18 @@
 import * as api from '../api'
 
 //action creators
+
+export const getPost = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: 'START_LOADING' })
+        const { data } = await api.fetchPost(id);
+        dispatch({ type: 'FETCH_POST', payload: data });
+        dispatch({ type: 'END_LOADING' })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const getPosts = (page) => async (dispatch) => {
     try {
         dispatch({ type: 'START_LOADING' })
@@ -28,8 +40,8 @@ export const createPost = (post, navigate) => async (dispatch) => {
     try {
         dispatch({ type: 'START_LOADING' })
         const { data } = await api.createPost(post);
+        navigate(`/posts/${data._id}`);
         dispatch({ type: 'CREATE', payload: data });
-        navigate.push(`/posts/${data._id}`);
         dispatch({ type: 'END_LOADING' })
     } catch (error) {
         console.log(error);
